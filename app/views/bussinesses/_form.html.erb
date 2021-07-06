@@ -1,0 +1,93 @@
+<%= form_with(model: bussiness) do |form| %>
+  <% if bussiness.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bussiness.errors.count, "error") %> prohibited this bussiness from being saved:</h2>
+
+      <ul>
+        <% bussiness.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street %>
+    <%= form.text_field :street %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :neighborhood %>
+    <%= form.text_field :neighborhood %>
+  </div>
+
+  <div class="field">
+    <%= form.label :interested %>
+    <%= form.check_box :interested %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+   <div class="field">
+    <%= form.label :facebook %>
+    <%= form.text_field :facebook %>
+  </div>
+
+   <div class="field">
+    <%= form.label :instagram %>
+    <%= form.text_field :instagram %>
+  </div>
+
+  <div class="field">
+    <%= form.label :site_web %>
+    <%= form.text_field :site_web %>
+  </div>
+
+   <div class="field">
+    <%= form.label :chatbot %>
+    <%= form.check_box :chatbot %>
+  </div>
+
+  <div class="field">
+    <%= form.label :system_price %>
+    <%= form.check_box :system_price %>
+  </div>
+  <div class="field">
+    <%= form.label :newsletter %>
+    <%= form.check_box :newsletter %>
+  </div>
+  <div class="field">
+    <%= form.label :trans_site %>
+    <%= form.check_box :trans_site %>
+  </div>
+  <div class="field">
+    <%= form.label :delivery %>
+    <%= form.check_box :delivery %>
+  </div>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_area :comments %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
