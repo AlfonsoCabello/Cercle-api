@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bussinesses</h1>
+
+
+
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Import Data from CSV
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body"> 
+    <div>
+      <%= form_tag import_bussinesses_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- COMENTARIO 1 = Imprimir variable ver controlador de business para ejemplo -->
+<%= @title %>
+
+<div class="bussinesses_table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Street</th>
+        <th>Zipcode</th>
+        <th>Neighborhood</th>
+        <th>Interested</th>
+        <th>Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @bussinesses.each do |bussiness| %> <!--Cuando es un bloque en html que es <% %> solamente EJECUTA acciones de ruby (cualquier codigo de ruby, no imprime)-->
+        <tr>
+          <td><%= bussiness.name %></td> <!--Cuando tienes <%= %> este imprime en pantalla -->
+          <td><%= bussiness.street %></td>
+          <td><%= bussiness.zipcode %></td>
+          <td><%= bussiness.neighborhood %></td>
+          <td><%= bussiness.interested %></td>
+          <td><%= bussiness.status %></td>
+          <td><%= link_to 'Show', bussiness %></td>
+          <td><%= link_to 'Edit', edit_bussiness_path(bussiness) %></td>
+          <td><%= link_to 'Destroy', bussiness, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Bussiness', new_bussiness_path, class:"btn btn-outline-primary btn-lg" %>

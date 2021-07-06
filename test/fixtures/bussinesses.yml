@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  street: MyString
+  zipcode: MyString
+  neighborhood: MyString
+  interested: false
+
+two:
+  name: MyString
+  street: MyString
+  zipcode: MyString
+  neighborhood: MyString
+  interested: false
