@@ -1,0 +1,37 @@
+<% @available_bussiness = Bussiness.unassigned
+  @available_bussiness += Bussiness.mine(@team.id) if @team.persisted?
+%>
+
+
+<%= form_with(model: team) do |form| %>
+  <% if team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+        <% team.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-text"%>
+  </div>
+
+  <strong>Businesses:</strong>
+
+    <ul>
+    <%= form.collection_check_boxes :bussiness_ids, @available_bussiness, :id, :name do |p| %>
+    <li>
+      <%= p.label %>
+      <%= p.check_box(class: "form-check-input")%>
+    </li>
+      <% end %>
+  </ul>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

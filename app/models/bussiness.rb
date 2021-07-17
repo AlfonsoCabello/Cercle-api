@@ -2,6 +2,10 @@ require 'csv'
 
 class Bussiness < ApplicationRecord
 
+	#################Associations
+
+	belongs_to :team
+
 	#################Validations
 
 	#Forzar poner el nombre del negocio
@@ -26,6 +30,9 @@ class Bussiness < ApplicationRecord
 	#scope con parametros
 	#1 status; nombre attributo 2: nombre variable 
 	#scope :by_status, ->(status) {where(status:status)} 
+
+	scope :unassigned, ->() {where(team_id:nil)} 
+	scope :mine, ->(team_id) {where(team_id: team_id)} 	
 
 	################ METODOS DE INSTANCIA - EJEMPLO DE METODOS DE INSTANCIA
 	#Metodo que solo afectara a la instancia (variables temporales)

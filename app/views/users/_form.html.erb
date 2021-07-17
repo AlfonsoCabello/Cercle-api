@@ -31,7 +31,15 @@
     <%= form.text_field :phone %>
   </div>
 
+    <div class="field">
+    <%= form.label :role %>
+    <%= form.collection_select(:role_id, Role.all, :id, :name) %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
+
+
 <% end %>

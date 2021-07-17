@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :limit_access
 
   # GET /users or /users.json
   def index
@@ -64,6 +65,12 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:last_name, :first_name, :email, :phone)
+      params.require(:user).permit(:last_name, :first_name, :email, :phone, :role_id)
+    end
+
+    def limit_access
+      if current_user.role_id != 1
+        redirect_to root_path, notice: "You are not an Admin."
+      end
     end
 end
