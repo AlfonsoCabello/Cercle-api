@@ -1,7 +1,10 @@
-<% @available_bussiness = Bussiness.unassigned
+<% 
+  @available_bussiness = Bussiness.unassigned
   @available_bussiness += Bussiness.mine(@team.id) if @team.persisted?
-%>
 
+  @available_user = User.unassigned
+  @available_user += User.mine(@team.id) if @team.persisted?
+%>
 
 <%= form_with(model: team) do |form| %>
   <% if team.errors.any? %>
@@ -24,14 +27,28 @@
   <strong>Businesses:</strong>
 
     <ul>
-    <%= form.collection_check_boxes :bussiness_ids, @available_bussiness, :id, :name do |p| %>
-    <li>
-      <%= p.label %>
-      <%= p.check_box(class: "form-check-input")%>
-    </li>
-      <% end %>
-  </ul>
+      <%= form.collection_check_boxes :bussiness_ids, @available_bussiness, :id, :name do |p| %>
+      <li>
+        <%= p.label %>
+        <%= p.check_box(class: "form-check-input")%>
+      </li>
+        <% end %>
+    </ul>
+
+   <strong>Interns:</strong>
+
+    <ul>
+      <%= form.collection_check_boxes :user_ids, @available_user, :id, :full_name do |p| %>
+      <li>
+        <%= p.label %>
+        <%= p.check_box(class: "form-check-input")%>
+      </li>
+        <% end %>
+    </ul>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
+

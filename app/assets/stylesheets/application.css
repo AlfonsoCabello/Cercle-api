@@ -44,3 +44,20 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.logo {
+  width: 350px;
+}
+
+.logo-menu {
+  width: 200px;
+}
+
+.menu-element {
+  vertical-align: middle; 
+  display: table-cell;
+}
+
+.menu-parent {
+  display: table;
+}

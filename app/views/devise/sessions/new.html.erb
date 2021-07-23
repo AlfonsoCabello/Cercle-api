@@ -1,20 +1,24 @@
+<body class="text-center">
 <main class="form-signin">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %> 
+    <%= image_tag("logos/cercle_api_logo.jpg", class:"logo") %>
+    
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <div class="">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="form-floating">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
     </div>
-    <div class="">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="form-floating">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control", autofocus: true,autocomplete: "current-password" %>
     </div>
 
-    <%= f.submit "Log in" %>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    <%= f.submit "Sign in", class: "w-100 btn btn-lg btn-primary"%>
+
+    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
   <% end %>
 </main>
-
+</body>
 <%= render "devise/shared/links" %>
+

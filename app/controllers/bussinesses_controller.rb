@@ -97,6 +97,6 @@ class BussinessesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def bussiness_params
       params.require(:bussiness).permit(:name, :street, :zipcode, :neighborhood, :interested, :facebook, :instagram,
-        :chatbot, :system_price, :newsletter, :trans_site, :delivery, :email, :comments, :team_id)
+        :chatbot, :system_price, :newsletter, :trans_site, :delivery, :email, :comments, :team_id, :phone)
     end
 end

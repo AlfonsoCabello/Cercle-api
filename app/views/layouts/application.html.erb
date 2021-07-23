@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>CercleApi</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -10,13 +9,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
    <%= render "layouts/javascript_and_css" %>
 
   </head>
   <body>
-      <%= render partial:"layouts/menu", locals: {message:"XOXO"} %>
-      <h3> <%= "Hi " + current_user.full_name if current_user %> </h3>
+      <!---<h3> <%= "Hi " + current_user.full_name if current_user %> </h3>--->
+      <%= render partial:"layouts/menu", locals: {message:""} %>
       <%= yield %>
   </body>
 </html>

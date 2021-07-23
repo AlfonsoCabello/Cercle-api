@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_175735) do
+ActiveRecord::Schema.define(version: 2021_07_23_030249) do
 
   create_table "bussinesses", force: :cascade do |t|
     t.string "name"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_175735) do
     t.string "email"
     t.text "comments"
     t.integer "team_id"
+    t.integer "phone"
     t.index ["team_id"], name: "index_bussinesses_on_team_id"
   end
 
@@ -64,9 +65,12 @@ ActiveRecord::Schema.define(version: 2021_07_17_175735) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.integer "role_id"
+    t.integer "team_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["team_id"], name: "index_users_on_team_id"
   end
 
+  add_foreign_key "users", "teams"
 end

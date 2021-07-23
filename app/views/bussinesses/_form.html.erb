@@ -27,8 +27,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :neighborhood %>
-    <%= form.text_field :neighborhood %>
+    <%= form.label :sector %>
+    <%= form.text_field :sector %>
   </div>
 
   <div class="field">
@@ -52,8 +52,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :site_web %>
-    <%= form.text_field :site_web %>
+    <%= form.label :web_site %>
+    <%= form.text_field :web_site %>
   </div>
 
    <div class="field">
@@ -62,15 +62,15 @@
   </div>
 
   <div class="field">
-    <%= form.label :system_price %>
-    <%= form.check_box :system_price %>
+    <%= form.label :automated_appointment %>
+    <%= form.check_box :automated_appointment %>
   </div>
   <div class="field">
     <%= form.label :newsletter %>
     <%= form.check_box :newsletter %>
   </div>
   <div class="field">
-    <%= form.label :trans_site %>
+    <%= form.label :transactional_site %>
     <%= form.check_box :trans_site %>
   </div>
   <div class="field">
@@ -81,6 +81,12 @@
     <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
   <div class="field">
     <%= form.label :comments %>
     <%= form.text_area :comments %>

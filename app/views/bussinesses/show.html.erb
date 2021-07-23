@@ -1,12 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<% if @bussiness.team %>
 <p>
-  <strong>Name:</strong>
+  <strong>Team:</strong>
+  <%= @bussiness.team.name %>
+</p>
+<% end %>
+
+<p>
+  <strong>Business:</strong>
   <%= @bussiness.name %>
 </p>
 
 <p>
-  <strong>Street:</strong>
+  <strong>Address:</strong>
   <%= @bussiness.street %>
 </p>
 
@@ -16,7 +23,7 @@
 </p>
 
 <p>
-  <strong>Neighborhood:</strong>
+  <strong>Sector:</strong>
   <%= @bussiness.neighborhood %>
 </p>
 
@@ -36,7 +43,7 @@
 </p>
 
 <p>
-  <strong>Site Web:</strong>
+  <strong>Web Site:</strong>
   <%= @bussiness.site_web %>
 </p>
 <p>
@@ -63,6 +70,12 @@
   <strong>Email:</strong>
   <%= @bussiness.email %>
 </p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @bussiness.phone %>
+</p>
+
 <p>
   <strong>Comments:</strong>
   <%= @bussiness.comments %>
