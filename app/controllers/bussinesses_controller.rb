@@ -42,8 +42,14 @@ class BussinessesController < ApplicationController
     redirect_to root_url, notice: "Data Imported!"
   end
 
-
-
+  #EXPORT data to CSV
+  def export
+    @bussiness = Bussiness.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @bussiness.to_csv, filename: "database_#{Date.today}.csv" }
+    end
+  end
 
   # GET /bussinesses/1/edit
   def edit
@@ -89,6 +95,7 @@ class BussinessesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_bussiness
       @bussiness = Bussiness.find(params[:id])
@@ -99,4 +106,5 @@ class BussinessesController < ApplicationController
       params.require(:bussiness).permit(:name, :street, :zipcode, :neighborhood, :interested, :facebook, :instagram,
         :chatbot, :system_price, :newsletter, :trans_site, :delivery, :email, :comments, :team_id, :phone)
     end
+
 end

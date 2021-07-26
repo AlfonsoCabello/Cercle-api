@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>Team: <%= @team.name %></strong></li></h3>
+</ul>
+
+<ol>
 
 <% if @team.bussinesses.any? %>
   <p>
-    <strong>Businesses:</strong>
+    <strong>Businesses Asigned:</strong>
     <p>
       <ul>
         <% @team.bussinesses.each do |bussiness| %>
@@ -22,7 +23,7 @@
 
 <% if @team.users.any? %>
   <p>
-    <strong>Users:</strong>
+    <strong>Team Members:</strong>
     <p>
       <ul>
         <% @team.users.each do |user| %>
@@ -35,6 +36,10 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+</ol>
+
+<hr>
+
+<%= link_to 'Edit', edit_team_path(@team), class:"btn btn-primary" %> |
+<%= link_to 'Back', teams_path, class:"btn btn-primary" %>
 

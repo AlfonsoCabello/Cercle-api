@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :teams
   resources :roles
   resources :bussinesses do
-    collection {post :import}
+    collection {
+      post :import
+      get :export }
   end
 
   devise_for :users

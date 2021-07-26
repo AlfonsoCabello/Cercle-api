@@ -1,6 +1,14 @@
-<h1>Editing User</h1>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>Editing <%= @user.full_name %></strong></li></h3>
+</ul>
+
+<ol>
 
 <%= render 'form', user: @user %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+</ol>
+
+<hr>
+
+<%= link_to 'Show', @user, class:"btn btn-primary" %> |
+<%= link_to 'Back', users_path, class:"btn btn-primary" %>

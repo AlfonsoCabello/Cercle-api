@@ -61,7 +61,6 @@ class Bussiness < ApplicationRecord
 	 	self.site_web = nil if self.site_web.blank?
 	 end
 
-
 	################ METODOS DE CLASE
 	#Metodos de clase son aquellos que no solo afectan a una sola instancia
 
@@ -76,7 +75,16 @@ class Bussiness < ApplicationRecord
 		end
 	end
 
+	#### DATA EXPORT
 
-
- 
+	def self.to_csv
+		#column_names = %w{ id email name} ----- if you wish to export just specific columns
+	    CSV.generate(headers: true) do |csv|
+	      csv << Bussiness.column_names
+	      all.each do |result|
+	        csv << Bussiness.column_names.map{|attr| result.send(attr)}
+	      end
+	    end
+  	end
 end
+

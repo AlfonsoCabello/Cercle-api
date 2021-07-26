@@ -1,6 +1,16 @@
-<h1>Editing Bussiness</h1>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>Editing <%= @bussiness.name %></strong></li></h3>
+</ul>
+
+<br>
+
+<ol>
 
 <%= render 'form', bussiness: @bussiness %>
 
-<%= link_to 'Show', @bussiness %> |
-<%= link_to 'Back', bussinesses_path %>
+</ol>
+
+<hr>
+
+<%= link_to 'Show', @bussiness, class:"btn btn-primary" %>
+<%= link_to 'Back', bussinesses_path, class:"btn btn-primary" %>

@@ -1,16 +1,20 @@
 <p id="notice"><%= notice %></p>
 
+
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong><%= @bussiness.name %></strong></li></h3>
+</ul>
+
+<br>
+
+<ol>
+
 <% if @bussiness.team %>
 <p>
   <strong>Team:</strong>
   <%= @bussiness.team.name %>
 </p>
 <% end %>
-
-<p>
-  <strong>Business:</strong>
-  <%= @bussiness.name %>
-</p>
 
 <p>
   <strong>Address:</strong>
@@ -81,6 +85,9 @@
   <%= @bussiness.comments %>
 </p>
 
+</ol>
 
-<%= link_to 'Edit', edit_bussiness_path(@bussiness) %> |
-<%= link_to 'Back', bussinesses_path %>
+<hr>
+
+<%= link_to 'Edit', edit_bussiness_path(@bussiness), class:"btn btn-primary" %> |
+<%= link_to 'Back', bussinesses_path, class:"btn btn-primary" %>

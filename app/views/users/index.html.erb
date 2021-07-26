@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>Users</strong></li></h3>
+</ul>
+
+<ol>
 
 <div class="users_table">
   <table class="table">
@@ -23,7 +27,6 @@
           <td><%= user.email %></td>
           <td><%= user.phone %></td>
           <td><%= user.role.name %></td>
-          <td><%= link_to 'Show', user %></td>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
           <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
@@ -34,4 +37,8 @@
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+</ol>
+
+<hr>
+
+<%= link_to 'New User', new_user_path, class:"btn btn-primary d-inline" %>

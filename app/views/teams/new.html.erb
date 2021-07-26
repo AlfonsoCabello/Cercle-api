@@ -1,5 +1,13 @@
-<h1>New Team</h1>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>New Team</strong></li></h3>
+</ul>
+
+<ol>
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'Back', teams_path %>
+</ol>
+
+<hr>
+
+<%= link_to 'Back', teams_path, class:"btn btn-primary" %>

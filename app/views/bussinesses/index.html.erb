@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Businesses</h1>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>Businesses</strong></li></h3>
+</ul>
+
+<ol>
 
 <!-- COMENTARIO 1 = Imprimir variable ver controlador de business para ejemplo -->
-<%= @title %>
+<!--<%= @title %>-->
 
 <div class="bussinesses_table">
   <table class="table">
@@ -41,21 +45,33 @@
 
 <br>
 
+</ol>
 
-<%= link_to 'Add New Bussiness', new_bussiness_path, class:"btn btn-primary d-inline" %>
+<hr>
 
-<p class="d-inline">
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Import Data from CSV
-  </a>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body"> 
-    <div>
-      <%= form_tag import_bussinesses_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Import CSV" %>
-      <% end %>
+<%= link_to 'Add New Bussiness', new_bussiness_path, class:"btn btn-primary" %>
+
+<% if current_user.role_id == 1 %>
+
+  <p class="d-inline">
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Import CSV
+    </a>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body"> 
+      <div>
+        <%= form_tag import_bussinesses_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+
+  <%= link_to 'Export CSV', export_bussinesses_path({format: :csv}), class:"btn btn-primary"%>
+
+<% else %>
+  <%= link_to '',  root_path %>
+<% end %>
+

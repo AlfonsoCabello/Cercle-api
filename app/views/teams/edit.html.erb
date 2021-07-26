@@ -1,6 +1,14 @@
-<h1>Editing Team</h1>
+<ul class="list-group">
+  <h3><li class="list-group-item active" aria-current="true"><strong>Editing <%= @team.name %></strong></li></h3>
+</ul>
+
+<ol>
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+</ol>
+
+<hr>
+
+<%= link_to 'Show', @team, class:"btn btn-primary"  %> |
+<%= link_to 'Back', teams_path, class:"btn btn-primary"  %>
