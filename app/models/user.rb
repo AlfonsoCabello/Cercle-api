@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
 	belongs_to :role 
 	belongs_to :team, optional: true
-	before_validation :set_password
+	#before_validation :set_password
 	after_create :send_welcome_email
 
 	#################SCOPES
@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
 	#################
 
-	devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 	def full_name
 		self.first_name + " " + self.last_name

@@ -7,11 +7,11 @@
 
     <div class="form-floating">
       <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+      <%= f.text_field :email, class: "form-control", autocomplete: "email" %>
     </div>
     <div class="form-floating">
       <%= f.label :password %>
-      <%= f.password_field :password, class: "form-control", autofocus: true,autocomplete: "current-password" %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
     </div>
 
     <%= f.submit "Sign in", class: "w-100 btn btn-lg btn-primary"%>
