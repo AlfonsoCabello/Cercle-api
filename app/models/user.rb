@@ -3,6 +3,7 @@ class User < ApplicationRecord
 	belongs_to :role 
 	belongs_to :team, optional: true
 	before_validation :set_password
+	after_create :send_welcome_email
 
 	#################SCOPES
 
@@ -20,8 +21,15 @@ class User < ApplicationRecord
 	private
 
 	def set_password
-		self.password = "temporal1"
-		self.password_confirmation = "temporal1"
+		require 'securerandom'
+		new_password = SecureRandom.hex
+		self.password = new_password
+		self.password_confirmation = new_password
 	end
+
+	def send_welcome_email
+		#We call method welcome
+		UserMailer.with(user: self, new_password: self.password).welcome.deliver_later
+	end	
 
 end

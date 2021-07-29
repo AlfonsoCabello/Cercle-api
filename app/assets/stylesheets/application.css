@@ -61,3 +61,16 @@
 .menu-parent {
   display: table;
 }
+
+.logo-email {
+  outline: none;
+  text-decoration: none;
+  -ms-interpolation-mode: bicubic;
+  clear: both;
+  display: inline-block !important;
+  border: none;
+  height: auto;
+  float: none;
+  width: 100%;
+  max-width: 650px;
+}
