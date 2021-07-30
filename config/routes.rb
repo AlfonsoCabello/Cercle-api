@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       get :export }
   end
 
-  devise_for :users, :controllers => {:sessions => 'devise/sessions'}
+  devise_for :users, :controllers => {:sessions => 'devise/sessions'}, :skip => [:registrations]
   resources :users
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
