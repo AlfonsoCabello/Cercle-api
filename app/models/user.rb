@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
 	belongs_to :role 
 	belongs_to :team, optional: true
-	#before_validation :set_password
+	before_create :set_password
 	after_create :send_welcome_email
 
 	#################SCOPES
@@ -12,7 +12,8 @@ class User < ApplicationRecord
 
 	#################
 
-	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+	devise :database_authenticatable, :registerable, :recoverable, :rememberable
+	#:trackable, :validatable, :confirmable
 
 	def full_name
 		self.first_name + " " + self.last_name
@@ -21,10 +22,12 @@ class User < ApplicationRecord
 	private
 
 	def set_password
-		require 'securerandom'
-		new_password = SecureRandom.hex
-		self.password = new_password
-		self.password_confirmation = new_password
+		if self.password.nil?
+			require 'securerandom'
+			new_password = SecureRandom.hex
+			self.password = new_password
+			self.password_confirmation = new_password
+		end
 	end
 
 	def send_welcome_email
