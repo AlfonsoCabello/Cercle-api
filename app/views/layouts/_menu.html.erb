@@ -29,6 +29,10 @@
           </li>
 
           <li class="nav-item menu-parent">
+            <span class="menu-element"><%= link_to "Dashboard",dashboard_bussinesses_path, class:"nav-link" %></span> 
+          </li>
+
+          <li class="nav-item menu-parent">
             <span class="menu-element"><%= link_to('Logout', destroy_user_session_path, method: :delete, class:"nav-link") %></span>        
           </li>
           
@@ -38,3 +42,5 @@
     </div>
   </div>
 </nav>
+
+
