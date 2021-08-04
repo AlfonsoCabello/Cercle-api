@@ -5,7 +5,7 @@ class BussinessesController < ApplicationController
   # GET /bussinesses or /bussinesses.json
   def index
     #lista de todos los elementos
-    @bussinesses = Bussiness.all
+    @bussinesses = Bussiness.by_role(current_user.role)
 
     #filtrando con scope
     #@bussinesses = Bussiness.all_created
@@ -38,7 +38,7 @@ class BussinessesController < ApplicationController
 
   #IMPORT data from CSV
   def import
-    Bussiness.import(params[:file])
+    Bussiness.import(params[:file], current_user.role.name)
     redirect_to root_url, notice: "Data Imported!"
   end
 
@@ -48,6 +48,12 @@ class BussinessesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @bussiness.to_csv, filename: "database_#{Date.today}.csv" }
+    end
+  end
+
+  def dashboard
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -104,7 +110,13 @@ class BussinessesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def bussiness_params
       params.require(:bussiness).permit(:name, :street, :zipcode, :neighborhood, :interested, :facebook, :instagram,
-        :chatbot, :system_price, :newsletter, :trans_site, :delivery, :email, :comments, :team_id, :phone)
+        :chatbot, :system_price, :newsletter, :trans_site, :delivery, :email, :comments, :team_id, :phone, :office)
     end
 
 end
+
+
+#new view
+#1 - html file
+#2- routes
+#3- controller action

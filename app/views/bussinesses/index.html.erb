@@ -19,6 +19,7 @@
         <th>Interested</th>
         <th>Phone</th>
         <th>E-mail</th>
+        <th>Office</th>
         <th>Team</th>
         <th colspan="3"></th>
       </tr>
@@ -33,6 +34,7 @@
           <td><%= bussiness.interested %></td>
           <td><%= bussiness.phone %></td>
           <td><%= bussiness.email %></td>
+          <td><%= bussiness.office %></td>
           <td><%= bussiness.team.name rescue ""%></td>
           <td><%= link_to 'Show', bussiness %></td>
           <td><%= link_to 'Edit', edit_bussiness_path(bussiness) %></td>
@@ -51,19 +53,20 @@
 
 <%= link_to 'Add New Bussiness', new_bussiness_path, class:"btn btn-primary" %>
 
-<% if current_user.role_id == 1 %>
+<% if current_user.role.name.start_with?("admin") %>
 
   <p class="d-inline">
-    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <button class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" <%= "disabled" if current_user.role.name == "admin"%>>
       Import CSV
-    </a>
+    </button>
   </p>
   <div class="collapse" id="collapseExample">
     <div class="card card-body"> 
       <div>
+        <% disable = current_user.role.name == "admin"%>
         <%= form_tag import_bussinesses_path, multipart: true do %>
           <%= file_field_tag :file %>
-          <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+          <%= submit_tag "Import CSV", class:"btn btn-primary", disabled: disable %>
         <% end %>
       </div>
     </div>

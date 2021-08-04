@@ -32,8 +32,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :office %>
+    <%= form.select :office, Bussiness.offices.map {|key, value|[key.humanize, key]} %>
+  </div>
+
+  <div class="field">
     <%= form.label :interested %>
-    <%= form.check_box :interested %>
+    <%= form.select :interested, Bussiness.interesteds.map {|key, value|[key.humanize, key]} %>
   </div>
 
   <div class="field">

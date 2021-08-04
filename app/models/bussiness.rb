@@ -6,6 +6,11 @@ class Bussiness < ApplicationRecord
 
 	belongs_to :team, optional: true
 
+	################# Enum
+
+	enum office: [:montreal, :laval, :vaudreuilsoulanges]
+	enum interested: [:yes, :maybe, :no]
+
 	#################Validations
 
 	#Forzar poner el nombre del negocio
@@ -20,7 +25,6 @@ class Bussiness < ApplicationRecord
 
 	#Poner registros como nulos
 	before_create :set_nulls
-
 
 	#################SCOPES
 
@@ -37,8 +41,16 @@ class Bussiness < ApplicationRecord
 	################ METODOS DE INSTANCIA - EJEMPLO DE METODOS DE INSTANCIA
 	#Metodo que solo afectara a la instancia (variables temporales)
 
-	#Como diferenciar entre SELF y no
-	#self se refiere 
+	def self.by_role role
+		return Bussiness.all if role == Role.admin 
+		if role.name.start_with?("admin_","intern_")
+			office = role.name.split("_").second
+			return Bussiness.where(office: office)
+		end
+
+		return []
+	end
+	#Enum - multiple fixed options without creating an specific model
 
 	def welcome_message
 		puts "Welcome/Bienvenue " + self.name
@@ -66,12 +78,14 @@ class Bussiness < ApplicationRecord
 
 	##### DATA IMPORT
 
-	def self.import(file)
+	def self.import(file, role)
+		office = role.split("_").second
 		CSV.foreach(file.path, headers: false) do |row|
 			Bussiness.find_or_create_by name: row[0],
 			 street: row[1], zipcode: row[2],
 			 neighborhood: row[3],
-			 interested: row[4]
+			 #interested: row[4],
+			 office: office
 		end
 	end
 
