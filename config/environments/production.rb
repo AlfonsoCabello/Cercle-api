@@ -126,23 +126,23 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 , protocol: 'http'}
 
-  #config.action_mailer.smtp_settings = {
-  #  :address => "smtp.gmail.com",
-  #  :port => 587,
-  #  :user_name => "cercleapi.users@gmail.com",
-  #  :password => "rbvbdhwcllwpghay",
-  #  :authentication => "plain",
-  #  :enable_starttls_auto => true
-  #}
-
   config.action_mailer.smtp_settings = {
-    :address => "smtp.achetonsplusici.com",
+    :address => "smtp.gmail.com",
     :port => 587,
-    :user_name => "info@achetonsplusici.com",
-    :password => "y&_mEe3Qza",
+    :user_name => "cercleapi.users@gmail.com",
+    :password => "rbvbdhwcllwpghay",
     :authentication => "plain",
     :enable_starttls_auto => true
   }
+
+  #config.action_mailer.smtp_settings = {
+  #  :address => "smtp.achetonsplusici.com",
+  #  :port => 587,
+  #  :user_name => "info@achetonsplusici.com",
+  #  :password => "y&_mEe3Qza",
+  #  :authentication => "plain",
+  #  :enable_starttls_auto => true
+  #}
 
 
 
