@@ -12,16 +12,22 @@ class Bussiness < ApplicationRecord
 	enum interested: [:yes, :maybe, :no]
 
 	#################Validations
-
 	#Forzar poner el nombre del negocio
-	validates :name, presence:true
+	validates :name, :neighborhood, presence:true
 	#Street must have at least 5 characters to be valid
 	validates :street, length: {minimum: 5}
+	validates :zipcode, length: {is: 6}
+	validates :site_web, format: URI::regexp(%w[http https]), allow_nil:true, allow_blank:true
+	validates :phone, length: {is: 10}, numericality: {only_integer: true}, allow_nil:true, allow_blank:true
 
 	################TRIGGERS - INTERNAL USE COLUMNS
 
+	
 	#Poner estatus de creado en BD despues de crear un registro
 	after_create :set_status
+
+	before_save :facebook_url
+	before_save :instagram_url
 
 	#Poner registros como nulos
 	before_create :set_nulls
@@ -65,6 +71,24 @@ class Bussiness < ApplicationRecord
 	 	self.save #para que se guarde
 	 end
 
+	 def facebook_url
+	 	#establecer status en BD
+	 	if self.facebook.blank?
+	 		self.facebook = nil
+	 	else self.facebook.present? && self.status == "created"
+	 		self.facebook = "https://www.facebook.com/" + facebook
+	 	end
+	 end
+
+	 def instagram_url
+	 	#establecer status en BD
+	 	if self.instagram.blank?
+	 		self.instagram = nil
+	 	else self.instagram.present? && self.status == "created"
+	 		self.instagram = "https://www.instagram.com/" + instagram
+	 	end
+	 end
+
 	 #
 	 def set_nulls
 	 	self.instagram = nil if self.instagram.blank?
@@ -72,6 +96,8 @@ class Bussiness < ApplicationRecord
 	 	self.email = nil if self.email.blank?
 	 	self.site_web = nil if self.site_web.blank?
 	 end
+
+
 
 	################ METODOS DE CLASE
 	#Metodos de clase son aquellos que no solo afectan a una sola instancia
@@ -81,9 +107,9 @@ class Bussiness < ApplicationRecord
 	def self.import(file, role)
 		office = role.split("_").second
 		CSV.foreach(file.path, headers: false) do |row|
-			Bussiness.find_or_create_by name: row[0],
-			 street: row[1], zipcode: row[2],
-			 neighborhood: row[3],
+			Bussiness.find_or_create_by name: row[5],
+			 street: row[2], zipcode: row[3],
+			 neighborhood: row[4],
 			 #interested: row[4],
 			 office: office
 		end
