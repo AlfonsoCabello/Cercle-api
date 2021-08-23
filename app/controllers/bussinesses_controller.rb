@@ -5,8 +5,13 @@ class BussinessesController < ApplicationController
   # GET /bussinesses or /bussinesses.json
   def index
     #lista de todos los elementos
-    @bussinesses = Bussiness.by_role(current_user.role)
-
+    
+    if Bussiness.by_role(current_user.role).empty?
+      @bussinesses = Bussiness.all
+    else
+      @bussinesses = Bussiness.by_role(current_user.role)
+    end
+    
     #filtrando con scope
     #@bussinesses = Bussiness.all_created
 
