@@ -4,6 +4,34 @@
   <h3><li class="list-group-item active" aria-current="true"><strong>Businesses</strong></li></h3>
 </ul>
 
+<%= link_to 'Add New Bussiness', new_bussiness_path, class:"btn btn-primary" %>
+
+<% if current_user.role.name.start_with?("admin") %>
+
+  <p class="d-inline">
+    <button class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" <%= "disabled" if current_user.role.name == "admin"%>>
+      Import CSV
+    </button>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body"> 
+      <div>
+        <% disable = current_user.role.name == "admin"%>
+        <%= form_tag import_bussinesses_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import CSV", class:"btn btn-primary", disabled: disable %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to 'Export CSV', export_bussinesses_path({format: :csv}), class:"btn btn-primary"%>
+
+<% else %>
+  <%= link_to '',  root_path %>
+<% end %>
+
+
 <ol>
 
 <!-- COMENTARIO 1 = Imprimir variable ver controlador de business para ejemplo -->
@@ -50,31 +78,3 @@
 </ol>
 
 <hr>
-
-<%= link_to 'Add New Bussiness', new_bussiness_path, class:"btn btn-primary" %>
-
-<% if current_user.role.name.start_with?("admin") %>
-
-  <p class="d-inline">
-    <button class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" <%= "disabled" if current_user.role.name == "admin"%>>
-      Import CSV
-    </button>
-  </p>
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body"> 
-      <div>
-        <% disable = current_user.role.name == "admin"%>
-        <%= form_tag import_bussinesses_path, multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Import CSV", class:"btn btn-primary", disabled: disable %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <%= link_to 'Export CSV', export_bussinesses_path({format: :csv}), class:"btn btn-primary"%>
-
-<% else %>
-  <%= link_to '',  root_path %>
-<% end %>
-

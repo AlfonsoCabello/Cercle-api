@@ -136,12 +136,12 @@ Rails.application.configure do
   }
 
   #config.action_mailer.smtp_settings = {
-  #  :address => "smtp.achetonsplusici.com",
-  #  :port => 587,
-  #  :user_name => "info@achetonsplusici.com",
-  #  :password => "y&_mEe3Qza",
-  #  :authentication => "plain",
-  #  :enable_starttls_auto => true
+   # :address => "smtp.achetonsplusici.com",
+    #:port => 587,
+    #:user_name => "info@achetonsplusici.com",
+    #:password => "y&_mEe3Qza",
+    #:authentication => "plain",
+    #:enable_starttls_auto => true
   #}
 
 
