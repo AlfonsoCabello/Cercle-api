@@ -6,12 +6,8 @@ class BussinessesController < ApplicationController
   def index
     #lista de todos los elementos
     
-    if Bussiness.by_role(current_user.role).empty?
-      @bussinesses = Bussiness.all
-    else
-      @bussinesses = Bussiness.by_role(current_user.role)
-    end
-    
+    @bussinesses = Bussiness.by_role(current_user.role)
+
     #filtrando con scope
     #@bussinesses = Bussiness.all_created
 

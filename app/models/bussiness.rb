@@ -13,12 +13,11 @@ class Bussiness < ApplicationRecord
 
 	#################Validations
 	#Forzar poner el nombre del negocio
-	validates :name, :neighborhood, presence:true
+	#validates :name, :neighborhood, presence:true
 	#Street must have at least 5 characters to be valid
-	validates :street, length: {minimum: 5}
-	validates :zipcode, length: {is: 6}
-	validates :site_web, format: URI::regexp(%w[http https]), allow_nil:true, allow_blank:true
-	validates :phone, length: {is: 10}, numericality: {only_integer: true}, allow_nil:true, allow_blank:true
+	#validates :street, length: {minimum: 5}
+	#validates :zipcode, length: {is: 6}
+	#validates :site_web, format: URI::regexp(%w[http https]), allow_nil:true, allow_blank:true
 
 	################TRIGGERS - INTERNAL USE COLUMNS
 
@@ -26,8 +25,8 @@ class Bussiness < ApplicationRecord
 	#Poner estatus de creado en BD despues de crear un registro
 	after_create :set_status
 
-	before_save :facebook_url
-	before_save :instagram_url
+	#before_save :facebook_url
+	#before_save :instagram_url
 
 	#Poner registros como nulos
 	before_create :set_nulls
@@ -110,7 +109,18 @@ class Bussiness < ApplicationRecord
 			Bussiness.find_or_create_by name: row[5],
 			 street: row[2], zipcode: row[3],
 			 neighborhood: row[4],
-			 #interested: row[4],
+			 interested: row[6],
+			 phone: row[7],
+			 site_web: row[8],
+			 chatbot: row[9],
+			 system_price: row[10],
+			 newsletter: row[11],
+			 trans_site: row[12],
+			 delivery: row[13],
+			 email: row[14],
+			 facebook: row[15],
+			 instagram: row[16],
+			 comments: row[17],
 			 office: office
 		end
 	end
